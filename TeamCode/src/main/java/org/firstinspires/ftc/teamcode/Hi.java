@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
 public class Hi {
-    //hi
+//    System.out.println("Hello, world!");
 }
