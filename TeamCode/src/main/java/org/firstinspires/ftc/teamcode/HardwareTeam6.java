@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,11 +14,24 @@ import com.qualcomm.robotcore.util.Range;
 public class HardwareTeam6 {
 
     public DcMotor demoWheel1;
+<<<<<<< Updated upstream
     public DcMotor demoWheel2;
     public DcMotor demoWheel3;
     public DcMotor demoWheel4;
     public Servo demoServo;
 
+=======
+
+    public DcMotor demoWheel2;
+
+    public DcMotor demoWheel3;
+
+    public DcMotor demoWheel4;
+
+    public Servo demoServo;
+
+
+>>>>>>> Stashed changes
     public static double maxSpeed = 1;
 
     private static HardwareTeam6 myInstance = null;
@@ -55,6 +71,7 @@ public class HardwareTeam6 {
 
     }
 
+<<<<<<< Updated upstream
     public void setPower(double wheelDemo1, double wheelDemo2, double wheelDemo3, double wheelDemo4) {
 
         demoWheel1.setPower(Range.clip(wheelDemo1, -maxSpeed, maxSpeed));
@@ -66,3 +83,14 @@ public class HardwareTeam6 {
 }
 
 
+=======
+        public void setPower(double wheelDemo1, double wheelDemo2, double wheelDemo3, double wheelDemo4){
+
+            demoWheel1.setPower(Range.clip(wheelDemo1, -maxSpeed, maxSpeed));
+            demoWheel2.setPower(Range.clip(wheelDemo2, -maxSpeed, maxSpeed));
+            demoWheel3.setPower(Range.clip(wheelDemo3, -maxSpeed, maxSpeed));
+            demoWheel4.setPower(Range.clip(wheelDemo4, -maxSpeed, maxSpeed));
+        }
+}
+
+>>>>>>> Stashed changes

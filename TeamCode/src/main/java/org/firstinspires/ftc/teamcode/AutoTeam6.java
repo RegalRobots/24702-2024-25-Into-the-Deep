@@ -1,14 +1,25 @@
 package org.firstinspires.ftc.teamcode;
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+<<<<<<< Updated upstream
 @Autonomous (name = "DemoAuto")
 public class AutoTeam6 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
+=======
+@Autonomous(name = "DemoAuto")
+public class AutoTeam6 extends LinearOpMode {
+
+    private ElapsedTime runtime = new ElapsedTime();
+
+>>>>>>> Stashed changes
     HardwareTeam6 robot = HardwareTeam6.getInstance();
 
     public void runOpMode() {
@@ -16,14 +27,22 @@ public class AutoTeam6 extends LinearOpMode {
 
         waitForStart();
 
+<<<<<<< Updated upstream
 
         move(10, 1);
         move(-10,1);
         move(15, 1);
+=======
+        move(10, 1);
+        move(-10,1);
+        move(15,1);
+
+>>>>>>> Stashed changes
 
 
     }
 
+<<<<<<< Updated upstream
     //create method to forward/backward
     public void move(double distance, double speed) {
 
@@ -34,6 +53,17 @@ public class AutoTeam6 extends LinearOpMode {
 
         //set power to 0
         robot.setPower(0,0,0,0);
+=======
+    // create method to forward/backward
+    public void move(double distance, double speed) {
+        //converting to ticks to inches
+        double wheelCircumference = 4 * Math.PI;
+        double wheelRPM = 560;
+        double ticks = (distance * (wheelRPM / wheelCircumference));
+
+        //set power to 0
+        robot.setPower(0, 0, 0, 0);
+>>>>>>> Stashed changes
 
         //Set Target Position
         robot.demoWheel1.setTargetPosition((int) Math.round(ticks));
@@ -58,10 +88,16 @@ public class AutoTeam6 extends LinearOpMode {
 
         //Keep the robot going to target position until wheel gets there
         while (opModeIsActive() && (robot.demoWheel1.isBusy())) {
+<<<<<<< Updated upstream
 
         }
         //Set power to 0 - stops robot
         robot.setPower(0,0,0,0);
+=======
+        }
+        //Set power to 0 - stops robot
+        robot.setPower(0, 0, 0, 0);
+>>>>>>> Stashed changes
 
         robot.demoWheel1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.demoWheel2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -91,14 +127,21 @@ public class AutoTeam6 extends LinearOpMode {
         robot.setPower(-speed, -speed, speed, speed);
 
         while (opModeIsActive() && (robot.demoWheel1.isBusy())) {
+<<<<<<< Updated upstream
 
         }
         robot.setPower(0,0,0,0);
+=======
+        }
+
+        robot.setPower(0, 0, 0, 0);
+>>>>>>> Stashed changes
 
         robot.demoWheel1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.demoWheel2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.demoWheel3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.demoWheel4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+<<<<<<< Updated upstream
     }
 
     public void timeMove(double speed, double time) {
@@ -108,6 +151,19 @@ public class AutoTeam6 extends LinearOpMode {
         robot.demoWheel2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.demoWheel3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.demoWheel4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+=======
+
+    }
+
+    public void timeMove(double time, double speed) {
+
+        runtime.reset();
+
+        robot.demoWheel1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.demoWheel2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.demoWheel3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.demoWheel4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+>>>>>>> Stashed changes
 
         robot.setPower(-speed,speed,-speed,speed);
 
@@ -121,6 +177,7 @@ public class AutoTeam6 extends LinearOpMode {
         robot.demoWheel3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.demoWheel4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+<<<<<<< Updated upstream
     }
 
 }
@@ -132,3 +189,8 @@ public class AutoTeam6 extends LinearOpMode {
 
 
 
+=======
+
+    }
+}
+>>>>>>> Stashed changes
