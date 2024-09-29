@@ -12,6 +12,8 @@ public class AutoTeam6 extends LinearOpMode {
 
     public void runOpMode() {
         robot.init(hardwareMap);
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
 
         waitForStart();
 
