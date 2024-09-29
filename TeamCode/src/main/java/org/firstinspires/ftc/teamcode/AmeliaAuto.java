@@ -12,6 +12,8 @@ public class AmeliaAuto extends LinearOpMode {
 
     public void runOpMode() {
         robot.init(hardwareMap);
+        telemetry.addData("Status", "Hello, Drivers!");
+        telemetry.update();
 
         waitForStart();
 
