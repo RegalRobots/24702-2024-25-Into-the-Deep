@@ -13,13 +13,14 @@ public class Auto extends LinearOpMode {
 
     public void runOpMode(){
         robot.init(hardwareMap);
+        telemetry.addData("Status", "Hello, Drivers!");
+        telemetry.update();
         waitForStart();
         //move 10 inches
         move(10, 1);
         //turns
         turn(1000, 1);
         //
-        timeMove()
     }
 
     //create method to move robot forwards or backwards a certain distance and speed
