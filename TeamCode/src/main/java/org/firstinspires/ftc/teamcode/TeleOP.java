@@ -45,7 +45,7 @@ public class TeleOP extends LinearOpMode {
 
             }
             if (gamepad2.a){
-                robot.rf.setPower(1);
+                //robot.rf.setPower(1);
             }
             if(gamepad2.b && !pressingB){
                 //action

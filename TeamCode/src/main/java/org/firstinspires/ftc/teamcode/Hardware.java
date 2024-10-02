@@ -29,7 +29,7 @@ public class Hardware {
         rf.setPower(0);
 
         rb = hwMap.get(DcMotor.class, "demoWheel2");
-        rf.setDirection(DcMotorSimple.Direction.REVERSE);
+        rb.setDirection(DcMotorSimple.Direction.REVERSE);
         rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rb.setPower(0);
