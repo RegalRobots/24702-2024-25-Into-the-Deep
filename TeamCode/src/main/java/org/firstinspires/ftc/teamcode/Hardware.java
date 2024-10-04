@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -22,28 +24,32 @@ public class Hardware {
         return instance;
     }
     public void init(HardwareMap hwMap){
-        rf = hwMap.get(DcMotor.class, "Right Front");
+        rf = hwMap.get(DcMotor.class, "rf");
         rf.setDirection(DcMotorSimple.Direction.REVERSE);
         rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rf.setPower(0);
+        //1
 
-        rb = hwMap.get(DcMotor.class, "Right Back");
+        rb = hwMap.get(DcMotor.class, "rr");
         rf.setDirection(DcMotorSimple.Direction.REVERSE);
         rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rb.setPower(0);
+        //3
 
-        lf = hwMap.get(DcMotor.class, "Left Front");
+        lf = hwMap.get(DcMotor.class, "lf");
         lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lf.setPower(0);
+        //0
 
-        lb = hwMap.get(DcMotor.class, "Left Back");
+        lb = hwMap.get(DcMotor.class, "lr");
         lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
-        demoServo = hwMap.get(Servo.class, "demoServo");
+
+        //demoServo = hwMap.get(Servo.class, "demoServo");
 
     }
 
