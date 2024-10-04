@@ -24,7 +24,7 @@ public class TeleOP extends LinearOpMode {
 
             double rf = movement - strafing - turning;
             double rb = movement + strafing - turning;
-            double lf = movement + strafing - turning;
+            double lf = movement + strafing + turning;
             double lb = movement - strafing + turning;
             double max = Math.max(Math.abs(rf), Math.max(Math.abs(rb), Math.max(Math.abs(lf), Math.abs(lb))));
             if (max < robot.maxSpeed) {

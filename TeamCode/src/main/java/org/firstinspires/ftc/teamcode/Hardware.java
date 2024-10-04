@@ -22,24 +22,24 @@ public class Hardware {
         return instance;
     }
     public void init(HardwareMap hwMap){
-        rf = hwMap.get(DcMotor.class, "demoWheel1");
+        rf = hwMap.get(DcMotor.class, "Right Front");
         rf.setDirection(DcMotorSimple.Direction.REVERSE);
         rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rf.setPower(0);
 
-        rb = hwMap.get(DcMotor.class, "demoWheel2");
-        rb.setDirection(DcMotorSimple.Direction.REVERSE);
+        rb = hwMap.get(DcMotor.class, "Right Back");
+        rf.setDirection(DcMotorSimple.Direction.REVERSE);
         rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rb.setPower(0);
 
-        lf = hwMap.get(DcMotor.class, "demoWheel3");
+        lf = hwMap.get(DcMotor.class, "Left Front");
         lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lf.setPower(0);
 
-        lb = hwMap.get(DcMotor.class, "demoWheel4");
+        lb = hwMap.get(DcMotor.class, "Left Back");
         lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
