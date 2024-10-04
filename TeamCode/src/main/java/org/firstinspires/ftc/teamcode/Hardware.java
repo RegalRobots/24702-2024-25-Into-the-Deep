@@ -32,7 +32,7 @@ public class Hardware {
         //1
 
         rb = hwMap.get(DcMotor.class, "rr");
-        rf.setDirection(DcMotorSimple.Direction.REVERSE);
+        rb.setDirection(DcMotorSimple.Direction.REVERSE);
         rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rb.setPower(0);

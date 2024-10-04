@@ -18,9 +18,9 @@ public class TeleOP extends LinearOpMode {
         boolean pressingLT = false;
         while (opModeIsActive()){
             //gamepad1 = Driver 1
-            double movement = -gamepad1.left_stick_x;
-            double strafing = gamepad1.right_stick_y;
-            double turning = -gamepad1.left_stick_y;
+            double movement = -gamepad1.left_stick_y;
+            double strafing = gamepad1.left_stick_y;
+            double turning = -gamepad1.left_stick_x;
 
             double rf = movement - strafing - turning;
             double rb = movement + strafing - turning;
