@@ -8,6 +8,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+/*
+This is what position to connect the motors to on the control hub
+Names refer to variable names
+
+rf - 0
+lf - 1
+lb - 2
+rb - 3
+ */
 public class Hardware {
     public DcMotor rf;
     public DcMotor rb;
