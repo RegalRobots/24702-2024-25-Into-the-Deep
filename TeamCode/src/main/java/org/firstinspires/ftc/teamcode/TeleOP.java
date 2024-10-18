@@ -4,6 +4,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+
+//close value right = .154, open = .298, close left = .684, open  = .538
 @TeleOp(name = "Demo TeleOP")
 public class TeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
@@ -47,6 +49,17 @@ public class TeleOP extends LinearOpMode {
             if (gamepad2.a){
                 //robot.rf.setPower(1);
             }
+            if(gamepad2.left_stick_y > 0.1) {
+                robot.armVertical.setPower(0.5);
+            } else if(gamepad2.left_stick_y < -0.1){
+                robot.armVertical.setPower(-0.5);
+            }
+
+            if(gamepad2.right_stick_y > 0.1) {
+                robot.moveArmForward(1);
+            } else if(gamepad2.right_stick_y < -0.1){
+                robot.armVertical.setPower(-0.5);
+            }
             if(gamepad2.b && !pressingB){
                 //action
                 pressingB = true;
@@ -58,11 +71,13 @@ public class TeleOP extends LinearOpMode {
             if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
                 if(!difference){
                     //Open claw
-                    robot.demoServo.setPosition(0.9); //may be wrong position
+                    robot.leftServo.setPosition(0.538);
+                    robot.rightServo.setPosition(0.298);//may be wrong position
                     difference = true;
                 } else {
                     //Close claw
-                    robot.demoServo.setPosition(0.2);
+                    robot.leftServo.setPosition(0.684);
+                    robot.rightServo.setPosition(0.154);
                     difference = false;
                 }
                 pressingLT = true;

@@ -9,6 +9,18 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 
+
+/*
+
+!pip install roboflow
+
+from roboflow import Roboflow
+rf = Roboflow(api_key="k5AkbaVmEfV8ps4YHZj3")
+project = rf.workspace("8579-classical-engineers").project("8579-into-the-deep-samples")
+version = project.version(7)
+dataset = version.download("coco-mmdetection")
+
+ */
 public class LimelightWorker {
     Limelight3A limelight = hardwareMap.get(Limelight3A.class, "John Doe"); //
     public void init() {
