@@ -21,8 +21,8 @@ public class TeleOP extends LinearOpMode {
         while (opModeIsActive()){
             //gamepad1 = Driver 1
             double movement = -gamepad1.left_stick_y;
-            double strafing = gamepad1.left_stick_y;
-            double turning = -gamepad1.left_stick_x;
+            double strafing = gamepad1.left_stick_x;
+            double turning = -gamepad1.right_stick_x;
 
             double rf = movement - strafing - turning;
             double rb = movement + strafing - turning;
@@ -56,7 +56,7 @@ public class TeleOP extends LinearOpMode {
             }
 
             if(gamepad2.right_stick_y > 0.1) {
-                robot.moveArmForward(1);
+                robot.armVertical.setPower(0.2);
             } else if(gamepad2.right_stick_y < -0.1){
                 robot.armVertical.setPower(-0.5);
             }

@@ -61,12 +61,12 @@ public class Hardware {
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
 
-        armVertical = hwMap.get(DcMotor.class, "armVertical");
+        armVertical = hwMap.get(DcMotor.class, "armV");
         armVertical.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armVertical.setPower(0);
 
-        armExtension = hwMap.get(DcMotor.class, "armHorizontal");
+        armExtension = hwMap.get(DcMotor.class, "armE");
         armExtension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armExtension.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         armExtension.setPower(0);
