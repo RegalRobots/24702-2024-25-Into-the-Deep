@@ -22,7 +22,7 @@ public class TeleOP extends LinearOpMode {
             //gamepad1 = Driver 1
             double movement = -gamepad1.left_stick_y;
             double strafing = gamepad1.left_stick_x;
-            double turning = -gamepad1.right_stick_x;
+            double turning = gamepad1.right_stick_x;
 
             double rf = movement - strafing - turning;
             double rb = movement + strafing - turning;
@@ -80,7 +80,7 @@ public class TeleOP extends LinearOpMode {
                 } else {
                     //Close claw
                     robot.leftServo.setPosition(0.684);
-                    robot.rightServo.setPosition(0.154);
+                    robot.rightServo.setPosition(0.1);
                     difference = false;
                 }
                 pressingLT = true;
