@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 //close value right = .154, open = .298, close left = .684, open  = .538
@@ -11,9 +12,13 @@ public class TeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
     public void runOpMode(){
+        int position = 0;
         robot.init(hardwareMap);
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
+        robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         waitForStart();
         boolean difference = false;
         boolean pressingB = false;
@@ -28,6 +33,7 @@ public class TeleOP extends LinearOpMode {
             double rb = movement + strafing - turning;
             double lf = movement + strafing + turning;
             double lb = movement - strafing + turning;
+            double ticks = -(robot.armExtension.getCurrentPosition());
             double max = Math.max(Math.abs(rf), Math.max(Math.abs(rb), Math.max(Math.abs(lf), Math.abs(lb))));
             if (max < robot.maxSpeed) {
                 robot.setPower(rf, rb, lf, lb);
@@ -38,7 +44,7 @@ public class TeleOP extends LinearOpMode {
                         (lf) * scaleFactor,
                         (lb) * scaleFactor);
             }
-            //only runs if the game button is held down
+            //only runs if the game button is he  ld down
             //gamepad 2 = driver 2
             if (gamepad2.a){
 
@@ -49,13 +55,23 @@ public class TeleOP extends LinearOpMode {
             if (gamepad2.a){
                 //robot.rf.setPower(1);
             }
-            if(gamepad2.left_stick_y > 0.1) {
-                //robot.armVertical.setPower(0.5);
-            } else if(gamepad2.left_stick_y < -0.1){
-                //robot.armVertical.setPower(-0.5);
+            if(gamepad2.left_stick_y > 0.1 && (ticks < 2850)) {
+                robot.armExtension.setPower(0.5);
+            } else if(gamepad2.left_stick_y < -0.1 && (ticks > 100)){
+                robot.armExtension.setPower(-0.5);
+            } else {
+                if (ticks > 2850) {
+                    robot.armExtension.setTargetPosition(2700);
+                } else if (ticks < 100) {
+                    robot.armExtension.setTargetPosition(500);
+                } else {
+                    robot.armExtension.setPower(0);
+                }
             }
 
-            if(gamepad2.right_stick_y > 0.1) {
+
+
+           if(gamepad2.right_stick_y > 0.1) {
                 robot.armVertical.setPower(0.2);
             }
             else if(gamepad2.right_stick_y < -0.1){
@@ -64,7 +80,8 @@ public class TeleOP extends LinearOpMode {
                 robot.armVertical.setPower(0);
             }
             if(gamepad2.b && !pressingB){
-                //action
+                telemetry.addData("Status", robot.armExtension.getCurrentPosition());
+                telemetry.update();
                 pressingB = true;
             } else if (!gamepad2.b){
                 pressingB = false;
@@ -88,6 +105,12 @@ public class TeleOP extends LinearOpMode {
             else if(!(gamepad2.left_trigger >0.1)){
                 pressingLT = false;
             }
+//            robot.armExtension.setPower(1);
+//            robot.armExtension.setTargetPosition();
+//            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            telemetry.addData("Position", ticks);
+            telemetry.update();
         }
     }
 }

@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
 
 @TeleOp(name = "Encoder Tester")
 public class EncoderTester extends LinearOpMode {
@@ -40,8 +42,8 @@ public class EncoderTester extends LinearOpMode {
             robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             telemetry.addData("position", position);
+            telemetry.addData("Encoder Position", robot.armExtension.getCurrentPosition());
             telemetry.update();
-            telemetry.addData("Encoder Position", robot.armVertical.getCurrentPosition());
         }
 
     }

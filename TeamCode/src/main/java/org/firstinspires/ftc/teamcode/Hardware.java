@@ -68,7 +68,7 @@ public class Hardware {
 
         armExtension = hwMap.get(DcMotor.class, "armE");
         armExtension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armExtension.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armExtension.setPower(0);
 
         leftServo = hwMap.get(Servo.class, "leftServo");
