@@ -16,8 +16,8 @@ public class Auto extends LinearOpMode {
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
         waitForStart();
-        //move 10 inches
-        move(10, 1);
+        //move 18 inches
+        move(18, 1);
         //turns
         turn(1000, 1);
         //
@@ -101,4 +101,5 @@ public class Auto extends LinearOpMode {
 
          robot.setPower(0, 0,0, 0);
      }
+
 }
