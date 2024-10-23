@@ -50,15 +50,18 @@ public class TeleOP extends LinearOpMode {
                 //robot.rf.setPower(1);
             }
             if(gamepad2.left_stick_y > 0.1) {
-                robot.armVertical.setPower(0.5);
+                //robot.armVertical.setPower(0.5);
             } else if(gamepad2.left_stick_y < -0.1){
-                robot.armVertical.setPower(-0.5);
+                //robot.armVertical.setPower(-0.5);
             }
 
             if(gamepad2.right_stick_y > 0.1) {
                 robot.armVertical.setPower(0.2);
-            } else if(gamepad2.right_stick_y < -0.1){
+            }
+            else if(gamepad2.right_stick_y < -0.1){
                 robot.armVertical.setPower(-0.5);
+            } else{
+                robot.armVertical.setPower(0);
             }
             if(gamepad2.b && !pressingB){
                 //action
