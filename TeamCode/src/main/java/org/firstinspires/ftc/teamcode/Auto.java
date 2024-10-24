@@ -16,12 +16,53 @@ public class Auto extends LinearOpMode {
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
         waitForStart();
+
+        //START AUTONOMOUS PROGRAM
         //move 18 inches
-        move(18, 1);
+        move(1, 0.2);
         //turns
-        turn(1000, 1);
-        //
+        turn(50, 0.4);
+        armSwing(5);
+
+
     }
+    /*
+    create some methods to make the arm move upward a certain amt of ticks, down a certain amount
+    of ticks, and extend the arm out and in a certain amount of ticks.
+     */
+
+    public void armSwing(int ticks) {
+        //move arm down until it hits touch sensor, then stop and reset encoder:
+        robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.armVertical.setTargetPosition(ticks);
+        robot.armVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (opModeIsActive() && (robot.rf.isBusy())) {
+
+        }
+
+        robot.armVertical.setPower(0);
+        robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void armExtend(int ticks) {
+        robot.armExtension.setTargetPosition(ticks);
+        robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (opModeIsActive() && (robot.rf.isBusy())) {
+
+        }
+
+        robot.armExtension.setPower(0);
+        robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+
+
+    //do not change anything after this point!!! (other than creating more methods)
+
 
     //create method to move robot forwards or backwards a certain distance and speed
     public void move(double distance, double speed){
@@ -62,44 +103,46 @@ public class Auto extends LinearOpMode {
         robot.setPower(0, 0,0, 0);
     }
     //method to turn
-     public void turn(int ticks, double speed){
-         robot.rf.setTargetPosition(ticks);
-         robot.rb.setTargetPosition(ticks);
-         robot.lf.setTargetPosition(ticks);
-         robot.lb.setTargetPosition(ticks);
+    public void turn(int ticks, double speed){
+        robot.rf.setTargetPosition(ticks);
+        robot.rb.setTargetPosition(ticks);
+        robot.lf.setTargetPosition(ticks);
+        robot.lb.setTargetPosition(ticks);
 
-         robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-         robot.rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         robot.lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-         robot.setPower(-speed, -speed,speed, speed);
+        robot.setPower(-speed, -speed,speed, speed);
 
-         while (opModeIsActive() && (robot.rf.isBusy())){
+        while (opModeIsActive() && (robot.rf.isBusy())){
 
-         }
-         robot.setPower(0, 0,0, 0);
-         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-     }
-     public void timeMovement(double speed, double time){
-            runtime.reset();
-         robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         robot.lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+        robot.setPower(0, 0,0, 0);
+        robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void timeMovement(double speed, double time){
+        runtime.reset();
+        robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-         robot.setPower(-speed, speed, -speed, speed);
+        robot.setPower(-speed, speed, -speed, speed);
 
-         while (runtime.seconds() < time){
+        while (runtime.seconds() < time){
 
-         }
+        }
 
-         robot.setPower(0, 0,0, 0);
-     }
+        robot.setPower(0, 0,0, 0);
+    }
+
+
 
 }

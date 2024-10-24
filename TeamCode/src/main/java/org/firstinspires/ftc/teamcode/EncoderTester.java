@@ -37,12 +37,12 @@ public class EncoderTester extends LinearOpMode {
                 pressingB = false;
             }
 
-            robot.armExtension.setPower(1);
-            robot.armExtension.setTargetPosition(position);
-            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.armVertical.setPower(1);
+            robot.armVertical.setTargetPosition(position);
+            robot.armVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             telemetry.addData("position", position);
-            telemetry.addData("Encoder Position", robot.armExtension.getCurrentPosition());
+            telemetry.addData("Encoder Position", robot.armVertical.getCurrentPosition());
             telemetry.update();
         }
 
