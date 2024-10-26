@@ -19,10 +19,11 @@ public class Auto extends LinearOpMode {
 
         //START AUTONOMOUS PROGRAM
         //move 18 inches
-        armExtend(2000);
+        armExtend(2000, 0.5);
         armVertical(1850);
         move(22,  0.5);
-        armExtend(-300);
+        armExtend(-300, 1);
+        openClaw();
         //turns
     }
     /*
@@ -48,14 +49,25 @@ public class Auto extends LinearOpMode {
         robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void armExtend(int ticks) {
+    //opens the claw to the open positions
+    public void openClaw(){
+        robot.leftServo.setPosition(0.538);
+        robot.rightServo.setPosition(0.298);
+
+    }
+    //closes the claw to the close positions
+    public void closeClaw(){
+        robot.leftServo.setPosition(0.684);
+        robot.rightServo.setPosition(0.1);
+    }
+    public void armExtend(int ticks, double power) {
         ticks = -(ticks);
         robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.armExtension.setTargetPosition(ticks);
         robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.armExtension.setPower(0.5);
+        robot.armExtension.setPower(power);
         while (opModeIsActive() && (robot.armExtension.isBusy())) {
 
         }
