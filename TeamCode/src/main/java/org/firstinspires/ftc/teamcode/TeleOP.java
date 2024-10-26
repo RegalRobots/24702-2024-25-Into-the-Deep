@@ -16,6 +16,8 @@ public class TeleOP extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
+        robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -124,7 +126,7 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             telemetry.addData("Position", ticks);
-            telemetry.addData("Power", robot.armVertical.getPower());
+            telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
             telemetry.update();
         }
     }

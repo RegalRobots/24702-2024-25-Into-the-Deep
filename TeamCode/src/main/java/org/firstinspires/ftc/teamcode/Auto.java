@@ -19,39 +19,44 @@ public class Auto extends LinearOpMode {
 
         //START AUTONOMOUS PROGRAM
         //move 18 inches
-        move(1, 0.2);
+        armExtend(2000);
+        armVertical(1850);
+        move(22,  0.5);
+        armExtend(-300);
         //turns
-        turn(50, 0.4);
-        armSwing(5);
-
-
     }
     /*
     create some methods to make the arm move upward a certain amt of ticks, down a certain amount
     of ticks, and extend the arm out and in a certain amount of ticks.
      */
 
-    public void armSwing(int ticks) {
+    public void armVertical(int ticks) {
+        ticks = -(ticks);
         //move arm down until it hits touch sensor, then stop and reset encoder:
         robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.armVertical.setTargetPosition(ticks);
         robot.armVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while (opModeIsActive() && (robot.rf.isBusy())) {
+        robot.armVertical.setPower(0.5);
+        while (opModeIsActive() && (robot.armVertical.isBusy())) {
 
         }
+
 
         robot.armVertical.setPower(0);
         robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void armExtend(int ticks) {
-        robot.armExtension.setTargetPosition(ticks);
+        ticks = -(ticks);
         robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.armExtension.setTargetPosition(ticks);
         robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while (opModeIsActive() && (robot.rf.isBusy())) {
+        robot.armExtension.setPower(0.5);
+        while (opModeIsActive() && (robot.armExtension.isBusy())) {
 
         }
 
