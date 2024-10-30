@@ -20,10 +20,12 @@ public class Auto extends LinearOpMode {
         //START AUTONOMOUS PROGRAM
         //move 18 inches
         armExtend(2000, 0.5);
-        armVertical(1850);
-        move(21,  0.5);
+        armVertical(1850, 1);
+        move(21.5,  0.5);
+        armVertical(-100, 1);
         armExtend(-600, 1);
         openClaw();
+        move(-10, 0.5);
 
         //turns
     }
@@ -32,7 +34,7 @@ public class Auto extends LinearOpMode {
     of ticks, and extend the arm out and in a certain amount of ticks.
      */
 
-    public void armVertical(int ticks) {
+    public void armVertical(int ticks, double speed) {
         ticks = -(ticks);
         //move arm down until it hits touch sensor, then stop and reset encoder:
         robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
