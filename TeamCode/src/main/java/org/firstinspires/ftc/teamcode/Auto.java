@@ -19,6 +19,7 @@ public class Auto extends LinearOpMode {
 
         //START AUTONOMOUS PROGRAM
         //move 18 inches
+<<<<<<< Updated upstream
         armExtend(2000, 0.5);
         armVertical(1850);
         move(21,  0.5);
@@ -26,6 +27,16 @@ public class Auto extends LinearOpMode {
         openClaw();
 
         //turns
+=======
+        armExtend(2000);
+        move(26,  0.5);
+        //turns
+
+
+        armVertical(250);
+
+
+>>>>>>> Stashed changes
     }
     /*
     create some methods to make the arm move upward a certain amt of ticks, down a certain amount
@@ -33,7 +44,10 @@ public class Auto extends LinearOpMode {
      */
 
     public void armVertical(int ticks) {
+<<<<<<< Updated upstream
         ticks = -(ticks);
+=======
+>>>>>>> Stashed changes
         //move arm down until it hits touch sensor, then stop and reset encoder:
         robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -41,7 +55,11 @@ public class Auto extends LinearOpMode {
         robot.armVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         robot.armVertical.setPower(0.5);
+<<<<<<< Updated upstream
         while (opModeIsActive() && (robot.armVertical.isBusy())) {
+=======
+        while (opModeIsActive() && (robot.rf.isBusy())) {
+>>>>>>> Stashed changes
 
         }
 
@@ -50,6 +68,7 @@ public class Auto extends LinearOpMode {
         robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+<<<<<<< Updated upstream
     //opens the claw to the open positions
     public void openClaw(){
         robot.leftServo.setPosition(0.538);
@@ -70,6 +89,14 @@ public class Auto extends LinearOpMode {
 
         robot.armExtension.setPower(power);
         while (opModeIsActive() && (robot.armExtension.isBusy())) {
+=======
+    public void armExtend(int ticks) {
+        robot.armExtension.setTargetPosition(ticks);
+        robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.armExtension.setPower(0.5);
+        while (opModeIsActive() && (robot.rf.isBusy())) {
+>>>>>>> Stashed changes
 
         }
 
