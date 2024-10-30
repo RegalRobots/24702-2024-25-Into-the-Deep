@@ -21,9 +21,10 @@ public class Auto extends LinearOpMode {
         //move 18 inches
         armExtend(2000, 0.5);
         armVertical(1850);
-        move(22,  0.5);
-        armExtend(-300, 1);
+        move(21,  0.5);
+        armExtend(-600, 1);
         openClaw();
+
         //turns
     }
     /*

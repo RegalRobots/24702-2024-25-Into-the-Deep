@@ -16,10 +16,6 @@ public class TeleOP extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
-        robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
         boolean difference = false;
