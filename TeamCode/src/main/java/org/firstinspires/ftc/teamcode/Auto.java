@@ -22,7 +22,8 @@ public class Auto extends LinearOpMode {
         armExtend(2000, 0.5);
         armVertical(1850, 1);
         move(21.5,  0.5);
-        armVertical(-100, 1);
+
+        armVertical(100, 1);
         armExtend(-600, 1);
         openClaw();
         move(-10, 0.5);
@@ -35,7 +36,7 @@ public class Auto extends LinearOpMode {
      */
 
     public void armVertical(int ticks, double speed) {
-        ticks = -(ticks);
+        ticks = (ticks);
         //move arm down until it hits touch sensor, then stop and reset encoder:
         robot.armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

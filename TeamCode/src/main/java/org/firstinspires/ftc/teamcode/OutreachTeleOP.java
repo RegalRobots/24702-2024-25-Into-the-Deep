@@ -13,6 +13,7 @@ public class OutreachTeleOP extends LinearOpMode {
 
     public void runOpMode(){
         int position = 0;
+
         robot.init(hardwareMap);
         robot.setSpeed(0.4);
         telemetry.addData("Status", "Hello, Drivers!");
@@ -25,6 +26,8 @@ public class OutreachTeleOP extends LinearOpMode {
         boolean tooFar = false;
         boolean tooHigh = false;
         double ticks = 0;
+        double verticalTicks = 0;
+
         while (opModeIsActive()){
             //gamepad1 = Driver 1
             double movement = -gamepad1.left_stick_y;
@@ -36,6 +39,7 @@ public class OutreachTeleOP extends LinearOpMode {
             double lf = movement + strafing + turning;
             double lb = movement - strafing + turning;
             ticks = -(robot.armExtension.getCurrentPosition());
+            verticalTicks = -(robot.armVertical.getCurrentPosition());
             double max = Math.max(Math.abs(rf), Math.max(Math.abs(rb), Math.max(Math.abs(lf), Math.abs(lb))));
             if (max < robot.maxSpeed) {
                 robot.setPower(rf, rb, lf, lb);
@@ -82,17 +86,19 @@ public class OutreachTeleOP extends LinearOpMode {
             } else{
                 tooFar = true;
             }
-            if (-(robot.armVertical.getCurrentPosition()) < 2000) {
+            if (verticalTicks < 2000) {
                 tooHigh = false;
+                telemetry.addData("Status", "It works");
             } else{
                 tooHigh = true;
+                telemetry.addData("Status", "It does works");
             }
 
-            if(gamepad2.right_stick_y > 0.1 && (!tooFar)) {
-                robot.armVertical.setPower(1);
+            if(gamepad2.right_stick_y > 0.1 && (!tooHigh)) {
+                robot.armVertical.setPower(-1);
             }
             else if(gamepad2.right_stick_y < -0.1){
-                robot.armVertical.setPower(-1);
+                robot.armVertical.setPower(1);
             } else{
                 robot.armVertical.setPower(0);
             }
@@ -106,7 +112,7 @@ public class OutreachTeleOP extends LinearOpMode {
             }*/
             //only for using trigger as a button
 
-            if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
+            if ((gamepad1.left_trigger > 0.1)&& !pressingLT){
                 if(!difference){
                     //Open claw
                     robot.leftServo.setPosition(0.538);
@@ -120,7 +126,7 @@ public class OutreachTeleOP extends LinearOpMode {
                 }
                 pressingLT = true;
             }
-            else if(!(gamepad2.left_trigger >0.1)){
+            else if(!(gamepad1.left_trigger >0.1)){
                 pressingLT = false;
             }
 //            robot.armExtension.setPower(1);
