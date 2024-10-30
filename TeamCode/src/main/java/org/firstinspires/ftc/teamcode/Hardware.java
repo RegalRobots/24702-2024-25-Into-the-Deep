@@ -88,6 +88,9 @@ public class Hardware {
         lf.setPower(Range.clip(fl, -maxSpeed, maxSpeed));
         lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
     }
+    public void setSpeed(double speed){
+        maxSpeed = speed;
+    }
     public void moveArmForward(double distance){
         armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armVertical.setTargetPosition((int) (distance * 1120));

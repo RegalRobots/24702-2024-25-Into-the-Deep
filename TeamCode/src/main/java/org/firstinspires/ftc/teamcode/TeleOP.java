@@ -121,13 +121,11 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-<<<<<<< Updated upstream
+
             telemetry.addData("Position", ticks);
             telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
-=======
             telemetry.addData("Arm Horizontal Position", ticks);
 //            telemetry.addData("Arm Vertical Position", robot.armVertical.getCurrentPosition());
->>>>>>> Stashed changes
             telemetry.update();
         }
     }
