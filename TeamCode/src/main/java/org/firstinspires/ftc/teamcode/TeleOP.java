@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 //close value right = .154, open = .298, close left = .684, open  = .538
-@TeleOp(name = "Demo TeleOP")
+@TeleOp(name = "Main TeleOP")
 public class TeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
