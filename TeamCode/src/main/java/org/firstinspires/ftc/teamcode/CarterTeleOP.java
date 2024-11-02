@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 //close value right = .154, open = .298, close left = .684, open  = .538
-@TeleOp(name = "Demo TeleOP")
-public class TeleOP extends LinearOpMode {
+@TeleOp(name = "Solo TeleOP")
+public class CarterTeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
     public void runOpMode(){
@@ -21,6 +21,9 @@ public class TeleOP extends LinearOpMode {
         boolean difference = false;
         boolean pressingB = false;
         boolean pressingLT = false;
+        boolean pressingLB = false;
+        boolean pressingRT = false;
+        boolean pressingRB = false;
         boolean tooFar = false;
         double ticks = 0;
         while (opModeIsActive()){
@@ -44,67 +47,38 @@ public class TeleOP extends LinearOpMode {
                         (lf) * scaleFactor,
                         (lb) * scaleFactor);
             }
-            //only runs if the game button is he  ld down
-            //gamepad 2 = driver 2
-            if (gamepad2.a){
 
-            }
-            if (gamepad2.dpad_left){
-
-            }
-            if (gamepad2.a){
-                //robot.rf.setPower(1);
-            }
-
-            if(gamepad2.left_stick_y < -0.1 && (!tooFar)) {
+            if(gamepad1.left_trigger > 0.1 && (!tooFar)) {
                 telemetry.addData("Status", "This is going, should be going forward");
                 robot.armExtension.setPower(-0.5);
-            } else if(gamepad2.left_stick_y > 0.1){
+            } else if(gamepad1.left_bumper) {
                 telemetry.addData("Status", "This is going, should be going backwards");
                 robot.armExtension.setPower(0.5);
             } else {
-
                 robot.armExtension.setPower(0);
-//                if (ticks < 2850) {
-//                    robot.armExtension.setTargetPosition(2700);
-//                } else if (ticks > 100) {
-//                    robot.armExtension.setTarge'tPosition(500);
-//                } else {
-//                    robot.armExtension.setPower(0);
-//                }
             }
 
 
             if(ticks < 2850){
                 tooFar = false;
-            } else{
+            } else {
                 tooFar = true;
             }
 
 
-           if(gamepad2.right_stick_y > 0.1) {
+            if(gamepad1.right_trigger > 0.1) {
                 robot.armVertical.setPower(1);
-            }
-            else if(gamepad2.right_stick_y < -0.1){
+            } else if(gamepad1.right_bumper) {
                 robot.armVertical.setPower(-1);
-            } else{
+            } else {
                 robot.armVertical.setPower(0);
             }
-            /*if(gamepad2.b && !pressingB){
-                telemetry.addData("Extention Position", robot.armExtension.getCurrentPosition());
-                telemetry.addData("Horizontal Position", robot.armVertical.getCurrentPosition());
-                telemetry.update();
-                pressingB = true;
-            } else if (!gamepad2.b){
-                pressingB = false;
-            }*/
-            //only for using trigger as a button
 
-            if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
+            if ((gamepad1.b) && !pressingB){
                 if(!difference){
                     //Open claw
                     robot.leftServo.setPosition(0.538);
-                    robot.rightServo.setPosition(0.298);//may be wrong position
+                    robot.rightServo.setPosition(0.298);
                     difference = true;
                 } else {
                     //Close claw
@@ -112,10 +86,9 @@ public class TeleOP extends LinearOpMode {
                     robot.rightServo.setPosition(0.1);
                     difference = false;
                 }
-                pressingLT = true;
-            }
-            else if(!(gamepad2.left_trigger >0.1)){
-                pressingLT = false;
+                pressingB = true;
+            } else if(!gamepad1.b) {
+                pressingB = false;
             }
 //            robot.armExtension.setPower(1);
 //            robot.armExtension.setTargetPosition();

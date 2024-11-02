@@ -17,14 +17,19 @@ lf - 1
 lb - 2
 rb - 3
  */
+
+//close value right = .154, open = .298, close left = .684, open  = .538
 public class Hardware {
     public DcMotor rf;
     public DcMotor rb;
     public DcMotor lf;
     public DcMotor lb;
-    public Servo demoServo;
+    public DcMotor armVertical;
+    public DcMotor armExtension;
+    public Servo leftServo;
+    public Servo rightServo;
 
-    public static double maxSpeed = 0.5;
+    public static double maxSpeed = 0.6;
     private static Hardware instance = null;
     public static Hardware getInstance() {
         if(instance == null){
@@ -58,9 +63,24 @@ public class Hardware {
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
 
-        //demoServo = hwMap.get(Servo.class, "demoServo");
+        armVertical = hwMap.get(DcMotor.class, "armV");
+        armVertical.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armVertical.setPower(0);
 
+        armExtension = hwMap.get(DcMotor.class, "armE");
+        armExtension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armExtension.setPower(0);
+
+        leftServo = hwMap.get(Servo.class, "leftServo");
+        rightServo = hwMap.get(Servo.class, "rightServo");
+        leftServo.setPosition(.684);
+        rightServo.setPosition(.1);
     }
+
 
     public void setPower(double fr, double br, double fl, double bl){
         rf.setPower(Range.clip(fr, -maxSpeed, maxSpeed));
@@ -68,4 +88,19 @@ public class Hardware {
         lf.setPower(Range.clip(fl, -maxSpeed, maxSpeed));
         lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
     }
+    public void setSpeed(double speed){
+        maxSpeed = speed;
+    }
+    public void moveArmForward(double distance){
+        armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armVertical.setTargetPosition((int) (distance * 1120));
+        while(armVertical.isBusy()){
+            telemetry.addData("Arm Vertical Encoder", armVertical.getCurrentPosition());
+            telemetry.update();
+        }
+        armVertical.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armVertical.setPower(0);
+    }
 }
+
+

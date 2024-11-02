@@ -7,13 +7,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 //close value right = .154, open = .298, close left = .684, open  = .538
-@TeleOp(name = "Demo TeleOP")
-public class TeleOP extends LinearOpMode {
+@TeleOp(name = "Trunk or Treat TeleOP")
+public class OutreachTeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
     public void runOpMode(){
         int position = 0;
+
         robot.init(hardwareMap);
+        robot.setSpeed(0.4);
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
 
@@ -22,7 +24,10 @@ public class TeleOP extends LinearOpMode {
         boolean pressingB = false;
         boolean pressingLT = false;
         boolean tooFar = false;
+        boolean tooHigh = false;
         double ticks = 0;
+        double verticalTicks = 0;
+
         while (opModeIsActive()){
             //gamepad1 = Driver 1
             double movement = -gamepad1.left_stick_y;
@@ -34,6 +39,7 @@ public class TeleOP extends LinearOpMode {
             double lf = movement + strafing + turning;
             double lb = movement - strafing + turning;
             ticks = -(robot.armExtension.getCurrentPosition());
+            verticalTicks = -(robot.armVertical.getCurrentPosition());
             double max = Math.max(Math.abs(rf), Math.max(Math.abs(rb), Math.max(Math.abs(lf), Math.abs(lb))));
             if (max < robot.maxSpeed) {
                 robot.setPower(rf, rb, lf, lb);
@@ -80,13 +86,19 @@ public class TeleOP extends LinearOpMode {
             } else{
                 tooFar = true;
             }
+            if (verticalTicks < 2000) {
+                tooHigh = false;
+                telemetry.addData("Status", "It works");
+            } else{
+                tooHigh = true;
+                telemetry.addData("Status", "It does works");
+            }
 
-
-           if(gamepad2.right_stick_y > 0.1) {
-                robot.armVertical.setPower(1);
+            if(gamepad2.right_stick_y > 0.1 && (!tooHigh)) {
+                robot.armVertical.setPower(-1);
             }
             else if(gamepad2.right_stick_y < -0.1){
-                robot.armVertical.setPower(-1);
+                robot.armVertical.setPower(1);
             } else{
                 robot.armVertical.setPower(0);
             }
@@ -100,7 +112,7 @@ public class TeleOP extends LinearOpMode {
             }*/
             //only for using trigger as a button
 
-            if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
+            if ((gamepad1.left_trigger > 0.1)&& !pressingLT){
                 if(!difference){
                     //Open claw
                     robot.leftServo.setPosition(0.538);
@@ -114,14 +126,12 @@ public class TeleOP extends LinearOpMode {
                 }
                 pressingLT = true;
             }
-            else if(!(gamepad2.left_trigger >0.1)){
+            else if(!(gamepad1.left_trigger >0.1)){
                 pressingLT = false;
             }
 //            robot.armExtension.setPower(1);
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-
             telemetry.addData("Position", ticks);
             telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
             telemetry.addData("Arm Horizontal Position", ticks);
