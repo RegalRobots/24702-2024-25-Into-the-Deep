@@ -21,10 +21,9 @@ public class Auto extends LinearOpMode {
         //move 18 inches
         armExtend(2000, 0.5);
         armVertical(1850, 1);
-        move(21.5,  0.5);
-
-        armVertical(100, 1);
-        armExtend(-600, 1);
+        move(22,  0.5);
+        armVertical(-100, 1);
+        armExtend(-1200, 1);
         openClaw();
         move(-10, 0.5);
 
@@ -158,7 +157,6 @@ public class Auto extends LinearOpMode {
         robot.setPower(-speed, speed, -speed, speed);
 
         while (runtime.seconds() < time){
-
         }
 
         robot.setPower(0, 0,0, 0);
