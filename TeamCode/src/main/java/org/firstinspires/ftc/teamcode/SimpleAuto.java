@@ -137,7 +137,7 @@ public class SimpleAuto extends LinearOpMode {
             robot.lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.setPower(-speed, speed,-speed, speed);
+            robot.setPower(speed, -speed,-speed, speed);
 //            robot.lf.setPower(-0.5);
 //            robot.rf.setPower(0.5);
 //            robot.lb.setPower(0.5);

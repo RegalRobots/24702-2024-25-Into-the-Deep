@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
 
 //close value right = .154, open = .298, close left = .684, open  = .538
 @TeleOp(name = "Demo TeleOP")
@@ -18,10 +20,11 @@ public class TeleOP extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        boolean difference = false;
+        boolean clawIsOpen = false;
         boolean pressingB = false;
         boolean pressingLT = false;
         boolean tooFar = false;
+        boolean isStalling = false;
         double ticks = 0;
         while (opModeIsActive()){
             //gamepad1 = Driver 1
@@ -83,10 +86,10 @@ public class TeleOP extends LinearOpMode {
 
 
            if(gamepad2.right_stick_y > 0.1) {
-                robot.armVertical.setPower(1);
+                robot.armVertical.setPower(-1);
             }
             else if(gamepad2.right_stick_y < -0.1){
-                robot.armVertical.setPower(-1);
+                robot.armVertical.setPower(1);
             } else{
                 robot.armVertical.setPower(0);
             }
@@ -101,16 +104,16 @@ public class TeleOP extends LinearOpMode {
             //only for using trigger as a button
 
             if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
-                if(!difference){
+                if(!clawIsOpen){
                     //Open claw
                     robot.leftServo.setPosition(0.538);
                     robot.rightServo.setPosition(0.298);//may be wrong position
-                    difference = true;
+                    clawIsOpen = true;
                 } else {
                     //Close claw
                     robot.leftServo.setPosition(0.684);
                     robot.rightServo.setPosition(0.1);
-                    difference = false;
+                    clawIsOpen = false;
                 }
                 pressingLT = true;
             }
@@ -121,10 +124,28 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
+            if(robot.armExtension.getCurrent(CurrentUnit.AMPS) > 5){
+                isStalling = true;
+                position += 1;
+            } else{
+                isStalling = false;
+            }
+//            if(robot.armExtension.getCurrent(CurrentUnit.AMPS ) < 0.5){
+//                isStalling = false;
+//            }
+            if(isStalling && (position < 11)){
+                robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            } else{
+                if (robot.armExtension.getCurrent(CurrentUnit.AMPS) < 0.3){
+                    robot.armExtension.setPower(1);
+                }
+            }
             telemetry.addData("Position", ticks);
             telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
             telemetry.addData("Arm Horizontal Position", ticks);
+
+            telemetry.addData("Extension Voltabge", robot.armExtension.getCurrent(CurrentUnit.AMPS));
+            telemetry.addData("Hello", position);
 //            telemetry.addData("Arm Vertical Position", robot.armVertical.getCurrentPosition());
             telemetry.update();
         }

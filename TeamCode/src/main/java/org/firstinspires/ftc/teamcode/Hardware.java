@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -24,8 +25,8 @@ public class Hardware {
     public DcMotor rb;
     public DcMotor lf;
     public DcMotor lb;
-    public DcMotor armVertical;
-    public DcMotor armExtension;
+    public DcMotorEx armVertical;
+    public DcMotorEx armExtension;
     public Servo leftServo;
     public Servo rightServo;
 
@@ -63,18 +64,17 @@ public class Hardware {
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
 
-        armVertical = hwMap.get(DcMotor.class, "armV");
+        armVertical = hwMap.get(DcMotorEx.class, "armV");
         armVertical.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armVertical.setPower(0);
 
-        armExtension = hwMap.get(DcMotor.class, "armE");
+        armExtension = hwMap.get(DcMotorEx.class, "armE");
         armExtension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armExtension.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armExtension.setPower(0);
-
         leftServo = hwMap.get(Servo.class, "leftServo");
         rightServo = hwMap.get(Servo.class, "rightServo");
         leftServo.setPosition(.684);
