@@ -124,6 +124,8 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
+            /*
             if(robot.armExtension.getCurrent(CurrentUnit.AMPS) > 5){
                 isStalling = true;
                 position += 1;
@@ -140,6 +142,8 @@ public class TeleOP extends LinearOpMode {
                     robot.armExtension.setPower(1);
                 }
             }
+
+            */
             telemetry.addData("Position", ticks);
             telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
             telemetry.addData("Arm Horizontal Position", ticks);
