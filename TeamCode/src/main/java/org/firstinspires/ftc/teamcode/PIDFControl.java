@@ -13,41 +13,37 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @Config
 @TeleOp(name = "PID Controller")
-public class PIDFControl extends OpMode {
+public class PIDFControl{
 
     private PIDController controller;
 
-    Hardware robot = Hardware.getInstance();
-    public static double Ki = 0;
-    public static double Kp = 0;
-    public static double Kd = 0;
-
-    public static double feedForward = 0;
-
-    public static int target = 0;
+    double Kp;
+    double Ki;
+    double Kd;
+    double feedForward;
     public final double ticksInDegree = (700 / 180);
 
-    @Override
-    public void init(){
-        robot.init(hardwareMap);
+
+    PIDFControl(double Kp, double Ki, double Kd, double feedForward) {
+        this.Kp = Kp;
+        this.Ki = Ki;
+        this.Kd = Kd;
+        this.feedForward = feedForward;
         controller = new PIDController(Kp, Ki, Kd);
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
     }
 
-    @Override
-    public void loop() {
+
+    public void updatePid(DcMotorEx motor, int target){
         controller.setPID(Kp, Ki, Kd);
-        int verticalArmPosition = robot.armVertical.getCurrentPosition();
+        int verticalArmPosition = motor.getCurrentPosition();
         double pid = controller.calculate(verticalArmPosition, target);
         double ff = Math.cos(Math.toRadians(target / ticksInDegree)) * feedForward;
 
         double power = pid + ff;
 
-        robot.armVertical.setPower(power);
+        motor.setPower(power);
 
-        telemetry.addData("pos", verticalArmPosition);
-        telemetry.addData("target", target);
-        telemetry.update();
+
     }
 }

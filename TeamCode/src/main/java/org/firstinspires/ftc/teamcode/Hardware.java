@@ -21,10 +21,10 @@ rb - 3
 
 //close value right = .154, open = .298, close left = .684, open  = .538
 public class Hardware {
-    public DcMotor rf;
-    public DcMotor rb;
-    public DcMotor lf;
-    public DcMotor lb;
+    public DcMotorEx rf;
+    public DcMotorEx rb;
+    public DcMotorEx lf;
+    public DcMotorEx lb;
     public DcMotorEx armVertical;
     public DcMotorEx armExtension;
     public Servo leftServo;
@@ -39,27 +39,27 @@ public class Hardware {
         return instance;
     }
     public void init(HardwareMap hwMap){
-        rf = hwMap.get(DcMotor.class, "rf");
+        rf = hwMap.get(DcMotorEx.class, "rf");
         rf.setDirection(DcMotorSimple.Direction.REVERSE);
         rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rf.setPower(0);
         //1
 
-        rb = hwMap.get(DcMotor.class, "rr");
+        rb = hwMap.get(DcMotorEx.class, "rr");
         rb.setDirection(DcMotorSimple.Direction.REVERSE);
         rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rb.setPower(0);
         //3
 
-        lf = hwMap.get(DcMotor.class, "lf");
+        lf = hwMap.get(DcMotorEx.class, "lf");
         lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lf.setPower(0);
         //0
 
-        lb = hwMap.get(DcMotor.class, "lr");
+        lb = hwMap.get(DcMotorEx.class, "lr");
         lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lb.setPower(0);
