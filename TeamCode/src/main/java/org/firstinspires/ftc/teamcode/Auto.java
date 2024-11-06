@@ -21,14 +21,18 @@ public class Auto extends LinearOpMode {
         //move 18 inches
         armExtend(1200, 0.5);
         armVertical(2350, 0.5);
-        move(28.7,  0.5);
+        move(26,  0.4);
         armVertical(-200, 0.5);
 //        move(1.5, 0.5);
-        armExtend(-1000, 0.5);
+        armExtend(-850, 0.5);
 //        armVertical(-100, 1);
 //        armExtend(-1200, 1);
-//        openClaw();
-//        move(-10, 0.5);
+
+        openClaw();
+        move(-12, 0.5);
+        turn(1000,  0.3);
+        armVertical(-2000, 0.5);
+        move(49, 0.4);
 
         //turns
     }
@@ -127,8 +131,8 @@ public class Auto extends LinearOpMode {
     }
     //method to turn
     public void turn(int ticks, double speed){
-        robot.rf.setTargetPosition(ticks);
-        robot.rb.setTargetPosition(ticks);
+        robot.rf.setTargetPosition(-ticks);
+        robot.rb.setTargetPosition(-ticks);
         robot.lf.setTargetPosition(ticks);
         robot.lb.setTargetPosition(ticks);
 

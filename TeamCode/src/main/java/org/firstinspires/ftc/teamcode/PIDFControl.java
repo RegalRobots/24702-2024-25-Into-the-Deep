@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @Config
 @TeleOp(name = "PID Controller")
-public class PIDFControl{
+public class PIDFControl extends OpMode{
 
     private PIDController controller;
 
@@ -33,7 +33,13 @@ public class PIDFControl{
 
     }
 
+    public void init(){
 
+    }
+
+    public void loop(){
+
+    }
     public void updatePid(DcMotorEx motor, int target){
         controller.setPID(Kp, Ki, Kd);
         int verticalArmPosition = motor.getCurrentPosition();

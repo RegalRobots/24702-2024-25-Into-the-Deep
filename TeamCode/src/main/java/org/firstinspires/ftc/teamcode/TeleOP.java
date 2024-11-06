@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 
 //close value right = .154, open = .298, close left = .684, open  = .538
-@TeleOp(name = "Main TeleOP")
+@TeleOp(name = "Demon TeleOP")
 public class TeleOP extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
@@ -106,13 +106,13 @@ public class TeleOP extends LinearOpMode {
             if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
                 if(!clawIsOpen){
                     //Open claw
-                    robot.leftServo.setPosition(0.538);
-                    robot.rightServo.setPosition(0.298);//may be wrong position
+                    robot.leftServo.setPosition(0.559);
+                    robot.rightServo.setPosition(0.24);//may be wrong position
                     clawIsOpen = true;
                 } else {
                     //Close claw
-                    robot.leftServo.setPosition(0.684);
-                    robot.rightServo.setPosition(0.1);
+                    robot.leftServo.setPosition(.67);
+                    robot.rightServo.setPosition(.1);
                     clawIsOpen = false;
                 }
                 pressingLT = true;
