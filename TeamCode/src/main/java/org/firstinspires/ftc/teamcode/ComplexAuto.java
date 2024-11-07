@@ -43,14 +43,15 @@ public class ComplexAuto extends LinearOpMode {
 //        armExtend(1470, armSpeed);
         turn(-2000, 0.4);
         move(12, 0.4);
-        turn(500, 0.4);
+        turn(650, 0.4);
         move(4, 0.4);
 //        armExtend(500, armSpeed);
+        armExtend(1550, armSpeed);
         move(5.5, 0.4);
         openClaw();
         sleep(500);
         //turns
-    }
+    } //arm horizontal 1461, arm vertical 2077
     /*
     create some methods to make the arm move upward a certain amt of ticks, down a certain amount
     of ticks, and extend the arm out and in a certain amount of ticks.
@@ -66,7 +67,7 @@ public class ComplexAuto extends LinearOpMode {
 
         robot.armVertical.setPower(0.5);
         while (opModeIsActive() && (robot.armVertical.isBusy())) {
-            
+
         }
 
 

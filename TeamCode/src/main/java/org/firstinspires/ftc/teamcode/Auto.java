@@ -19,12 +19,7 @@ public class Auto extends LinearOpMode {
 
         //START AUTONOMOUS PROGRAM
         //move 18 inches
-        armExtend(1200, 0.5);
-        armVertical(2350, 0.5);
-        move(26,  0.4);
-        armVertical(-200, 0.5);
-//        move(1.5, 0.5);
-        armExtend(-850, 0.5);
+
 //        armVertical(-100, 1);
 //        armExtend(-1200, 1);
 
