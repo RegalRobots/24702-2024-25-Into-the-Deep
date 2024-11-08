@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
+@Autonomous(name = "States auto")
 public class StateAuto extends OpMode {
     Hardware robot = Hardware.getInstance();
     double armSpeed = 0.5;
@@ -24,6 +26,7 @@ public class StateAuto extends OpMode {
     }
     State state = State.RAISE_ARMS;
     public void init() {
+        robot.init(hardwareMap);
         state = State.RAISE_ARMS;
     }
     public void loop() {
@@ -31,21 +34,20 @@ public class StateAuto extends OpMode {
             case RAISE_ARMS:
                 armExtend(1200, armSpeed);
                 armVertical(2350, armSpeed);
-                if (!robot.armVertical.isBusy()) {
-                    robot.armVertical.setPower(0);
-                }
-                if (!robot.armExtension.isBusy()) {
+                if (robot.armVertical.getCurrentPosition() < 2350 && (robot.armExtension.getCurrentPosition() > 1200 ) ){
                     robot.armExtension.setPower(0);
-                }
-                if (!robot.armVertical.isBusy() && !robot.armExtension.isBusy()) {
+                    robot.armVertical.setPower(0);
                     state = State.GO_TO_BAR;
                 }
+                break;
             case GO_TO_BAR:
                 move(26, 0.4);
-                if (!robot.rf.isBusy()) {
+                if (!robot.rf.isBusy()){
                     robot.setPower(0, 0, 0, 0);
                     state = State.HANG_SPECIMEN;
                 }
+                break;
+
             case HANG_SPECIMEN:
                 armVertical(-200, armSpeed);
                 while (robot.armVertical.isBusy()) {
@@ -57,6 +59,8 @@ public class StateAuto extends OpMode {
                     robot.armExtension.setPower(0);
                     state = State.GO_TO_SAMPLE;
                 }
+                break;
+
             case GO_TO_SAMPLE:
                 openClaw();
                 move(-12, 0.5);
@@ -85,6 +89,8 @@ public class StateAuto extends OpMode {
                 }
                 robot.setPower(0, 0, 0, 0);
                 state = State.GRAB_SPECIMEN;
+                break;
+
             case GRAB_SPECIMEN:
                 armExtend(750, armSpeed);
                 armVertical(-2800, armSpeed);
@@ -95,6 +101,8 @@ public class StateAuto extends OpMode {
                     robot.armVertical.setPower(0);
                 }
                 closeClaw();
+                break;
+
             case UP_AND_ROTATE:
                 armVertical(3700, armSpeed);
                 turn(-2000, 0.4);
@@ -107,6 +115,8 @@ public class StateAuto extends OpMode {
                 if(!robot.armVertical.isBusy() && !robot.rf.isBusy()){
                     state = State.GO_TO_BASKET;
                 }
+                break;
+
             case GO_TO_BASKET:
                 move(12, 0.4);
                 while (robot.rf.isBusy()) {
@@ -119,6 +129,8 @@ public class StateAuto extends OpMode {
                 }
                 robot.setPower(0, 0, 0, 0);
                 move(4, 0.4);
+                break;
+
             case DROP_IN_BASKET:
                 armExtend(1550, 0.4);
                 move(5.5, 0.4);
@@ -128,8 +140,11 @@ public class StateAuto extends OpMode {
                     openClaw();
                     state = State.DONE;
                 }
+                break;
             case DONE:
                 break;
+            default:
+                telemetry.addData("Auto", "Finished");
         }
 }
 

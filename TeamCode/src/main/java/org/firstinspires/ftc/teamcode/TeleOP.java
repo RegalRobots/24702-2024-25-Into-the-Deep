@@ -78,7 +78,7 @@ public class TeleOP extends LinearOpMode {
             }
 
 
-            if(ticks < 2850){
+            if(ticks < 2700){
                 tooFar = false;
             } else{
                 tooFar = true;
@@ -124,26 +124,24 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
-            /*
-            if(robot.armExtension.getCurrent(CurrentUnit.AMPS) > 5){
-                isStalling = true;
-                position += 1;
-            } else{
-                isStalling = false;
-            }
-//            if(robot.armExtension.getCurrent(CurrentUnit.AMPS ) < 0.5){
+//
+//            if(robot.armExtension.getCurrent(CurrentUnit.AMPS) > 5){
+//                isStalling = true;
+//            } else{
 //                isStalling = false;
 //            }
-            if(isStalling && (position < 11)){
-                robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            } else{
-                if (robot.armExtension.getCurrent(CurrentUnit.AMPS) < 0.3){
-                    robot.armExtension.setPower(1);
-                }
-            }
+////            if(robot.armExtension.getCurrent(CurrentUnit.AMPS ) < 0.5){
+////                isStalling = false;
+////            }
+//            if(isStalling && (position < 11)){
+//                robot.armExtension.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//            } else{
+//                if (robot.armExtension.getCurrent(CurrentUnit.AMPS) < 0.3){
+//                    robot.armExtension.setPower(1);
+//                }
+//            }
 
-            */
+
             telemetry.addData("Position", ticks);
             telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
             telemetry.addData("Arm Horizontal Position", ticks);

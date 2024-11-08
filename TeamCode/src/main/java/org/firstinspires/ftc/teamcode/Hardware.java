@@ -77,8 +77,7 @@ public class Hardware {
         armExtension.setPower(0);
         leftServo = hwMap.get(Servo.class, "leftServo");
         rightServo = hwMap.get(Servo.class, "rightServo");
-        leftServo.setPosition(.684);
-        rightServo.setPosition(.1);
+
     }
 
 

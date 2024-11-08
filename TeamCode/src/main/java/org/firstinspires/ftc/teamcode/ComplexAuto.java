@@ -50,6 +50,7 @@ public class ComplexAuto extends LinearOpMode {
         move(5.5, 0.4);
         openClaw();
         sleep(500);
+
         //turns
     } //arm horizontal 1461, arm vertical 2077
     /*
@@ -171,6 +172,44 @@ public class ComplexAuto extends LinearOpMode {
         }
         robot.setPower(0, 0,0, 0);
         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void strafe(double distance, double speed){
+
+            //converts ticks to inches
+            double wheelCircumference = 4*Math.PI;
+            double wheelRPM = 560;
+            double ticks = (distance * (wheelRPM/wheelCircumference));
+
+            //set power to 0
+            robot.setPower(0, 0, 0, 0);
+
+            //set target position
+            robot.rf.setTargetPosition((int)Math.round(ticks));
+            robot.rb.setTargetPosition((int)Math.round(ticks));
+            robot.lf.setTargetPosition((int)Math.round(ticks));
+            robot.lb.setTargetPosition((int)Math.round(ticks));
+
+            //reset encoder to get rid of old value
+            robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            //set run to position
+            robot.rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            //setting power
+            robot.setPower(speed, speed,speed, speed);
+            //keep robot going to target position
+            while (opModeIsActive() && (robot.rf.isBusy())){
+
+            }
+            //set power to 0
+            robot.setPower(0, 0,0, 0);
     }
     public void timeMovement(double speed, double time){
         runtime.reset();
