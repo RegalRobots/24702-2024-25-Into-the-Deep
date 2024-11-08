@@ -33,9 +33,9 @@ public class ComplexAuto extends LinearOpMode {
         turn(-1000,  0.3);
         move(39, 0.4);
         turn(1000, 0.4);
-        move(8, 0.4);
+        move(10, 0.4);
 
-        armExtend(750, armSpeed);
+        armExtend(1000, armSpeed);
         armVertical(-2800, armSpeed);
         closeClaw();
         sleep(500);
@@ -49,7 +49,9 @@ public class ComplexAuto extends LinearOpMode {
         armExtend(1550, armSpeed);
         move(5.5, 0.4);
         openClaw();
-        sleep(500);
+
+
+        armExtend(-1400, 0.8);
 
         //turns
     } //arm horizontal 1461, arm vertical 2077
