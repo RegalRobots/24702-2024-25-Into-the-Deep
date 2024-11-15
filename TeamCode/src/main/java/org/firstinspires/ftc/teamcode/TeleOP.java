@@ -60,21 +60,12 @@ public class TeleOP extends LinearOpMode {
             }
 
             if(gamepad2.left_stick_y < -0.1 && (!tooFar)) {
-                telemetry.addData("Status", "This is going, should be going forward");
                 robot.armExtension.setPower(-0.5);
             } else if(gamepad2.left_stick_y > 0.1){
-                telemetry.addData("Status", "This is going, should be going backwards");
                 robot.armExtension.setPower(0.5);
             } else {
 
                 robot.armExtension.setPower(0);
-//                if (ticks < 2850) {
-//                    robot.armExtension.setTargetPosition(2700);
-//                } else if (ticks > 100) {
-//                    robot.armExtension.setTarge'tPosition(500);
-//                } else {
-//                    robot.armExtension.setPower(0);
-//                }
             }
 
 
@@ -123,7 +114,7 @@ public class TeleOP extends LinearOpMode {
 //            robot.armExtension.setPower(1);
 //            robot.armExtension.setTargetPosition();
 //            robot.armExtension.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+//
 //
 //            if(robot.armExtension.getCurrent(CurrentUnit.AMPS) > 5){
 //                isStalling = true;
