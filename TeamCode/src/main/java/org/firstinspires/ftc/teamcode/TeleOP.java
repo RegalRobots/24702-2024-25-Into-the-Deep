@@ -18,6 +18,13 @@ public class TeleOP extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Hello, Drivers!");
         telemetry.update();
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+
 
         waitForStart();
         boolean clawIsOpen = false;
@@ -133,12 +140,19 @@ public class TeleOP extends LinearOpMode {
 //            }
 
 
-            telemetry.addData("Position", ticks);
-            telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
-            telemetry.addData("Arm Horizontal Position", ticks);
+//            telemetry.addData("Position", ticks);
+//            telemetry.addData("Arm Vertical", robot.armVertical.getCurrentPosition());
+//            telemetry.addData("Arm Horizontal Position", ticks);
+//
+//            telemetry.addData("Extension Voltabge", robot.armExtension.getCurrent(CurrentUnit.AMPS));
+//            telemetry.addData("Hello", position);
+            telemetry.addData("X Pod Position(the one above pinpoint)", robot.odo.getEncoderX());
+            telemetry.addData("Y Pod Position(the one more abover)", robot.odo.getEncoderY());
+            telemetry.addData("X Pod Offset(the one more abover)", robot.odo.getXOffset());
+            telemetry.addData("Y Pod Offset(the one more abover)", robot.odo.getYOffset());
 
-            telemetry.addData("Extension Voltabge", robot.armExtension.getCurrent(CurrentUnit.AMPS));
-            telemetry.addData("Hello", position);
+            robot.odo.update();
+
 //            telemetry.addData("Arm Vertical Position", robot.armVertical.getCurrentPosition());
             telemetry.update();
         }

@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.pedroPathing.localization.GoBildaPinpointDriver;
+
 /*
 This is what position to connect the motors to on the control hub
 Names refer to variable names
@@ -27,6 +29,8 @@ public class Hardware {
     public DcMotorEx lb;
     public DcMotorEx armVertical;
     public DcMotorEx armExtension;
+    public GoBildaPinpointDriver odo;
+
     public Servo leftServo;
     public Servo rightServo;
 
@@ -77,6 +81,8 @@ public class Hardware {
         armExtension.setPower(0);
         leftServo = hwMap.get(Servo.class, "leftServo");
         rightServo = hwMap.get(Servo.class, "rightServo");
+
+        odo = hwMap.get(GoBildaPinpointDriver.class, "pinpoint");
 
     }
 
