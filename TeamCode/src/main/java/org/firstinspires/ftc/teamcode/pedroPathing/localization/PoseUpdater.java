@@ -262,7 +262,7 @@ public class PoseUpdater {
      */
     public Vector getVelocity() {
         if (currentVelocity == null) {
-            currentVelocity = new Vector();
+            currentVelocity = localizer.getVelocityVector();
             currentVelocity.setOrthogonalComponents(getPose().getX() - previousPose.getX(), getPose().getY() - previousPose.getY());
             currentVelocity.setMagnitude(MathFunctions.distance(getPose(), previousPose) / ((currentPoseTime - previousPoseTime) / Math.pow(10.0, 9)));
             return MathFunctions.copyVector(currentVelocity);
