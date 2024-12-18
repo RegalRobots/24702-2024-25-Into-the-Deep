@@ -106,7 +106,7 @@ public class TeleOP extends LinearOpMode {
             if ((gamepad2.left_trigger > 0.1)&& !pressingLT){
                 if(!clawIsOpen){
                     //Open claw
-                    robot.leftServo.setPosition(0.559);
+                    robot.leftServo.setPosition(0.56);
                     robot.rightServo.setPosition(0.24);//may be wrong position
                     clawIsOpen = true;
                 } else {
